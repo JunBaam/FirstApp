@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:background="#FFFFFF">
+
+
+    <Button
+        android:id="@+id/nowreading_newbook"
+        android:layout_width="91dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:background="#A5C8F1"
+        android:text="새로운책추가"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nowreading_nownowreading"
+        app:layout_constraintTop_toBottomOf="@+id/nowreading_change" />
+
+    <TextView
+        android:id="@+id/nowreading_nownowreading"
+        android:layout_width="165dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="현재 읽고있는책"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/nowreading_newbook"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nowreading_title" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/nowreading_bookimage"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="131dp"-->
+<!--        android:layout_marginTop="144dp"-->
+<!--        android:src="@drawable/window"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/nowreading_nowreading"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0">-->
+
+<!--    </ImageView>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/nowreading_bookname"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="책이름"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/nowreading_nowreading"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/nowreading_bookimage"-->
+<!--        app:layout_constraintVertical_bias="0.0"></TextView>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/nowreading_bookauthor"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="책작가명"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/nowreading_nowreading"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.173"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/nowreading_bookimage"-->
+<!--        app:layout_constraintVertical_bias="0.0"></TextView>-->
+
+    <ImageView
+            android:id="@+id/nowreading_empty"
+            android:layout_width="match_parent"
+            android:layout_height="426dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.554"
+            android:src="@drawable/empty"
+            />
+   
+    <TextView
+        android:id="@+id/nowreading_title"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="책꽂이"
+       android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+
+    <ImageView
+        android:id="@+id/nowreading_home"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nowreading_nowreading"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/nohouse" />
+
+    <ImageView
+        android:id="@+id/nowreading_nowreading"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nowreading_best"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nowreading_home"
+        app:srcCompat="@drawable/book"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Button
+        android:id="@+id/nowreading_best"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:text="BEST Seller"
+        android:textColor="#B7C1D1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nowreading_memo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nowreading_nowreading"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/nowreading_memo"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nowreading_mypage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nowreading_best"
+        app:srcCompat="@drawable/nomemo" />
+
+
+    <ImageView
+        android:id="@+id/nowreading_mypage"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nowreading_memo"
+        app:srcCompat="@drawable/nouse" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/nowreading_change"-->
+<!--        android:layout_width="45dp"-->
+<!--        android:layout_height="44dp"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.555"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/nowreading_title"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/mycheck" />-->
+
+
+    <CheckBox
+        android:id="@+id/nowreading_change"
+        android:layout_width="33dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="12dp"
+
+        android:button="@drawable/mycheck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toEndOf="@+id/nowreading_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@android:color/darker_gray"
+        android:scrollbars="vertical"
+        android:layout_height="406dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

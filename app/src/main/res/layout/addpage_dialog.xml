@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+
+    android:layout_width="300dp"
+    android:layout_height="300dp">
+
+
+
+<TextView
+    android:id="@+id/daydayday"
+    android:layout_marginTop="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="날짜"
+    android:textStyle="bold"
+    android:textColor="#1E8653"
+    android:layout_gravity="center"
+    />
+
+    <Button
+        android:id="@+id/addpage_date"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="날짜선택"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="읽은페이지 입력"
+        android:textColor="#1E8653"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/addpage_writepage"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:hint="읽은 페이지 작성"
+
+
+        />
+
+
+    <Button
+        android:id="@+id/addpage_ok"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="확인"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

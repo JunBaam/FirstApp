@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="book">\
+        <item>소설</item>
+        <item>시/에세이</item>
+        <item>경제/경영</item>
+        <item>자기계발</item>
+        <item>인문</item>
+        <item>역사/문화</item>
+        <item>종교</item>
+        <item>정치/사회</item>
+        <item>예술/대중문화</item>
+        <item>과학</item>
+        <item>컴퓨터/IT</item>
+        <item>외국어</item>
+        <item>가정/육아</item>
+        <item>건강</item>
+        <item>여행</item>
+        <item>요리</item>
+        <item>취미/실용/스포츠</item>
+        <item>잡지</item>
+        <item>만화</item>
+    </string-array>
+</resources>

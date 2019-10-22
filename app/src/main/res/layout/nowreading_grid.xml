@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".NowreadingActivity">
+
+    <TextView
+        android:id="@+id/hidden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/image_small"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginRight="10dp"
+        android:scaleType="centerCrop"
+        android:background="#2196F3"
+        ></ImageView>
+    <TextView
+
+        android:id="@+id/title_small"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="left"
+        android:textColor="#000000"
+        android:text="image1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+
+        />
+
+
+
+</LinearLayout>

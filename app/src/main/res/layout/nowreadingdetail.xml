@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    tools:context=".NowreadingDetailActivity"
+    android:background="#FFFFFF">
+
+
+    <ImageView
+        android:id="@+id/detailbookimage"
+        android:layout_width="188dp"
+        android:layout_height="299dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="40dp"
+        android:background="#272B3D"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/detail_bookinformation"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_title" />
+
+    <ImageView
+        android:id="@+id/detail_add"
+        android:layout_width="48dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="148dp"
+        android:src="@drawable/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toEndOf="@+id/detail_review"
+        app:layout_constraintTop_toBottomOf="@+id/detail_bookinformation" />
+
+    <LinearLayout
+        android:id="@+id/detail_bookinformation"
+        android:layout_width="188dp"
+        android:layout_height="299dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:background="#CFCBCB"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detailbookimage"
+        app:layout_constraintTop_toBottomOf="@+id/detail_title">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/detail_bookname"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#000" />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:text="저자명:"
+            android:layout_marginLeft="5dp"
+            android:textColor="#000" />
+        <TextView
+            android:id="@+id/detail_bookauthor"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:text="페이지수:"
+            android:layout_marginLeft="5dp"
+            android:textColor="#000" />
+
+
+        <TextView
+            android:id="@+id/detail_bookpage"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+
+            android:textColor="#000" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:text="분류:"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/detail_category"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000" />
+
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/detail_bookdate"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text=" 독서시작"
+                android:textColor="#000" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/detail_modify_information"
+                android:layout_width="80dp"
+                android:layout_height="26dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="4dp"
+                android:background="#9EC8DF"
+                android:text="책 정보수정" />
+
+            <Button
+                android:id="@+id/detail_finish"
+                android:layout_width="80dp"
+                android:layout_height="26dp"
+                android:layout_gravity="right"
+                android:background="#9EC8DF"
+                android:text="독서 완료" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detail_review"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+
+        android:text="독서진행상황 "
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/detailbookimage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailbookimage" />
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="55dp"
+        android:layout_height="42dp"
+        android:text="re"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detail_title"
+        android:layout_width="182dp"
+        android:layout_height="59dp"
+        android:gravity="center"
+        android:text="상세 정보 "
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="DELETE"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button2"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/detail_bookinformation" />-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detail_rv"
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_add"
+        app:layout_constraintVertical_bias="1.0"
+
+        tools:context=".NowreadingDetailActivity" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView333"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:layout_marginBottom="132dp"-->
+    <!--        android:text="TextView"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/textView444"-->
+    <!--        app:layout_constraintHorizontal_bias="0.703"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView444"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginEnd="140dp"-->
+    <!--        android:layout_marginBottom="132dp"-->
+    <!--        android:text="TextView"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

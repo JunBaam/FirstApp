@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    >
+
+    <TextView
+        android:id="@+id/finish_reading_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:text="책후기 작성">
+    </TextView>
+
+    <TextView
+        android:id="@+id/finish_reading_data"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:text="독서완료날짜 선택"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/finish_reading_review"
+        android:layout_width="match_parent"
+        android:layout_height="269dp"
+        android:layout_marginTop="40dp"
+        android:text="독서 후기 작성"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/finish_reading_complete"
+        android:layout_width="352dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:background="#A5C8F1"
+        android:text="독서 완료!!"
+        android:textSize="25dp"
+        android:textStyle="italic"
+
+
+        />
+
+
+</LinearLayout>

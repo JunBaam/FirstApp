@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/complete_modify_date"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:gravity="left"
+        android:text="읽기 시작한날짜선택"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/complete_modify_date2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_spinner" />
+
+    <Button
+        android:id="@+id/complete_modify_date2"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:gravity="left"
+        android:text="다읽은 날짜선택"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/complete_modify_writefinish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_date" />
+
+    <Button
+        android:id="@+id/complete_modify_writefinish"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
+        android:background="#A5C8F1"
+        android:text="수정 완료"
+        android:textSize="25dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/complete_modify_booktitle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:hint="책제목"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/complete_modify_bookauthor2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_image" />
+
+
+    <EditText
+        android:id="@+id/complete_modify_bookauthor2"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:hint="책저자명"
+
+        android:textSize="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/complete_modify_bookpage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_booktitle" />
+
+    <EditText
+        android:id="@+id/complete_modify_bookpage"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:hint="총페이지수"
+        android:textSize="13dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/complete_modify_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_bookauthor2" />
+
+    <ImageView
+        android:id="@+id/complete_modify_image"
+        android:layout_width="172dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="12dp"
+        android:background="#2D2F31"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_title" />
+
+    <ImageView
+        android:id="@+id/complete_modify_gallery"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/complete_modify_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/attach" />
+
+    <ImageView
+        android:id="@+id/complete_modify_camera"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/complete_modify_image"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_gallery"
+        app:srcCompat="@drawable/camera" />
+
+    <Spinner
+        android:id="@+id/complete_modify_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/complete_modify_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_modify_bookpage" />
+
+    <TextView
+        android:id="@+id/complete_modify_title"
+        android:layout_width="328dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="다읽은책 정보수정"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

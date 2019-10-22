@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:background="#FFFFFF">
+
+    <Button
+        android:id="@+id/complete_kakao"
+        android:layout_width="115dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="#A5C8F1"
+        android:text="카카오톡 공유"
+        app:layout_constraintBottom_toTopOf="@+id/complete_review_con"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_bookinformation"
+
+        app:layout_constraintVertical_bias="0.468" />
+
+    <ImageView
+        android:id="@+id/complete_bookimage"
+        android:layout_width="188dp"
+        android:layout_height="299dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/window"
+        app:layout_constraintEnd_toStartOf="@+id/complete_bookinformation"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_logo" />
+
+
+    <LinearLayout
+        android:id="@+id/complete_bookinformation"
+        android:layout_width="196dp"
+        android:layout_height="299dp"
+        android:layout_marginTop="12dp"
+        android:background="#D9D9D9"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/complete_bookimage"
+        app:layout_constraintTop_toBottomOf="@+id/complete_logo">
+
+
+
+        <TextView
+            android:id="@+id/complete_bookauthor"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="30dp"
+            android:text="책제목:"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/complete_category"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="책저자명:"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/complete_bookstart"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="책분류:"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/complete_bookend"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="읽기시작한 날짜:"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/complete_bookpage"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="다읽은 날짜:"
+            android:textColor="#000" />
+
+        <TextView
+
+            android:id="@+id/complete_bookname"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="총 페이지수:"
+            android:textColor="#000" />
+
+        <Button
+            android:id="@+id/complete_bookmodify_btn"
+            android:layout_width="135dp"
+            android:layout_height="33dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#A5C8F1"
+            android:text="책 정보수정하기" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/complete_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="left"
+        android:text="독서 후기"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/complete_review_con"
+        app:layout_constraintEnd_toStartOf="@+id/complete_kakao"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_bookimage" />
+
+    <TextView
+        android:id="@+id/complete_review_con"
+        android:layout_width="318dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="64dp"
+
+        android:layout_marginEnd="8dp"
+        android:background="#D9D9D9"
+        android:text="독서 후기 내용"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/complete_bookimage" />
+
+    <TextView
+        android:id="@+id/complete_logo"
+        android:layout_width="167dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="다 읽은책"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

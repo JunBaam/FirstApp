@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:id="@+id/mypage_title"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:text="마이페이지"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="italic"
+
+        android:gravity="center"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/mypage_stop_btn"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="248dp"
+        android:text="타이머"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_count"
+        app:layout_constraintVertical_bias="0.03" />
+
+
+    <Button
+        android:id="@+id/mypage_call"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="248dp"
+        android:text="상담 연결 "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_count"
+        app:layout_constraintVertical_bias="0.142" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새로나온책"
+        android:textColor="#050303"
+
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/mypage_ad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_call"
+        app:layout_constraintVertical_bias="1.0">
+
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/mypage_ad"
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:layout_marginTop="156dp"
+        android:background="#424242"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_call" />
+
+    <TextView
+        android:id="@+id/mypage_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="후기작성한 책수:"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_title" />
+
+    <Button
+        android:id="@+id/mypage_best"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:text="BEST Seller"
+        android:textColor="#B7C1D1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mypage_memo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mypage_reading"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_ad"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/mypage_home"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mypage_reading"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/nohouse" />
+
+    <ImageView
+        android:id="@+id/mypage_reading"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mypage_best"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mypage_home"
+        app:srcCompat="@drawable/nobook" />
+
+    <ImageView
+        android:id="@+id/mypage_memo"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mypage_mypage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mypage_best"
+        app:srcCompat="@drawable/nomemo" />
+
+    <ImageView
+        android:id="@+id/mypage_mypage"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mypage_memo"
+        app:srcCompat="@drawable/use"
+        android:layout_marginBottom="5dp"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

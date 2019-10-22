@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.afinal">
+
+    <application
+
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".crawling.BestActivity"></activity>
+        <activity android:name=".ReadingnewModifyActivity" />
+        <activity android:name=".ReadingnewActivity" />
+        <activity android:name=".NowreadingDetailActivity" />
+        <activity android:name=".NowreadingActivity" />
+        <activity android:name=".MypageActivity" />
+        <activity android:name=".MemoWriteActivity" />
+        <activity android:name=".MemoModifyActivity" />
+        <activity android:name=".MemoActivity" />
+        <activity android:name=".LodingActivity" >
+        </activity>
+        <activity android:name=".CompleteModifyActivity" />
+        <activity android:name=".CompleteActivity" />
+        <activity android:name=".BestSellerActivity" />
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- 사진 촬영을 위한 provide -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.afinal.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+</manifest>

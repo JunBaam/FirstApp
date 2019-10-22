@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/memo_best"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:text="BEST Seller"
+        android:textColor="#B7C1D1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/memo_memo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/memo_reading" />
+
+
+
+
+    <ImageView
+        android:id="@+id/memoadd_btn"
+        android:layout_width="58dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toEndOf="@+id/memo_searchView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/plus" />
+
+    <ImageView
+        android:id="@+id/memo_home"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/memo_reading"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memomodify_btn"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/nohouse" />
+
+    <ImageView
+        android:id="@+id/memo_reading"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/memo_best"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/memo_home"
+        app:srcCompat="@drawable/nobook" />
+
+
+    <ImageView
+        android:id="@+id/memo_memo"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/memo_mypage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/memo_best"
+
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/memo" />
+
+    <ImageView
+        android:id="@+id/memo_mypage"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/memo_memo"
+
+
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/nouse" />
+
+    <ListView
+        android:id="@+id/memo_listview"
+        android:layout_width="match_parent"
+        android:layout_height="437dp"
+        android:choiceMode="singleChoice"
+        android:divider="#241445"
+        android:dividerHeight="2.0dp"
+        app:layout_constraintBottom_toTopOf="@+id/memo_best"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memoadd_btn"
+        app:layout_constraintVertical_bias="0.504">
+
+    </ListView>
+
+    <SearchView
+        android:id="@+id/memo_searchView"
+        android:layout_width="260dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="92dp"
+        android:background="#DADEE0"
+        app:layout_constraintBottom_toBottomOf="@+id/memoadd_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memo_logo" />
+
+    <TextView
+        android:id="@+id/memo_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+        android:text="메모"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

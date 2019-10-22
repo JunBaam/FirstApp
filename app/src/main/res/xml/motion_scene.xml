@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app = " http://schemas.android.com/apk/res-auto ">
+
+<!-- SetStart - 애니메이션이 실행되는 부분
+     SetEnd   - 애니메이션이 종료되는 부분
+     duration - 애니메이션 실행시간
+     interpolator
+     -linear : 그냥움직임
+     -bounce:  한번 튕겨줌
+     -->
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="2000"
+
+       motion:motionInterpolator="bounce"
+        >
+
+        <OnClick
+
+            motion:clickAction="toggle"
+         motion:targetId="@id/image"
+            >
+
+
+        </OnClick>
+
+
+         </Transition>
+       <ConstraintSet android:id="@+id/start">
+
+           <!-- Constraint 에서 제약을 걸수있음
+                motion을 틍해 위치를 설정-->
+         <Constraint android:id="@+id/image"
+             android:layout_width="180dp"
+             android:layout_height="65dp"
+             motion:layout_constraintBottom_toBottomOf="@+id/home_searchView"
+             motion:layout_constraintEnd_toEndOf="parent"
+             motion:layout_constraintStart_toStartOf="parent"
+             motion:layout_constraintTop_toTopOf="parent"
+             motion:layout_constraintVertical_bias="0.0"
+
+           >
+             <!-- CustomAttribute 에서 전환 효과를준다-->
+        <CustomAttribute
+            motion:attributeName="crossfade"
+            motion:customFloatValue="0" />
+    </Constraint>
+</ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@+id/image"
+            android:layout_width="180dp"
+            android:layout_height="65dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/home_searchView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.0"
+
+            >
+            <!--    android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="8dp"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" -->
+            <!-- CustomAttribute 에서 전환 효과를준다-->
+
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1"
+                />
+
+
+        </Constraint>
+    </ConstraintSet>
+
+
+
+</MotionScene>

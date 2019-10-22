@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    app:layoutDescription="@xml/puzzle_scene"
+
+>
+
+
+    <TextView
+        android:id="@+id/best_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="베스트셀러"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="40dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/piece_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="316dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/piece_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/window"
+        android:gravity="center"
+        android:text="2"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/piece_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="404dp"
+        android:background="@drawable/ic_launcher_background"
+        android:gravity="center"
+        android:text="3"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/piece_1" />
+
+    <ImageView
+        android:id="@+id/best_mypage"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/best_memo"
+        app:srcCompat="@drawable/nouse" />
+
+    <ImageView
+        android:id="@+id/best_home"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/best_reading"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/nohouse" />
+
+    <Button
+        android:id="@+id/best_best"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:text="BEST Seller"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/best_memo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/best_reading" />
+
+
+    <ImageView
+        android:id="@+id/best_reading"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/best_best"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/best_home"
+        app:srcCompat="@drawable/nobook" />
+
+    <ImageView
+        android:id="@+id/best_memo"
+        android:layout_width="62dp"
+        android:layout_height="72dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/best_mypage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/best_best"
+        app:srcCompat="@drawable/nomemo" />
+
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
