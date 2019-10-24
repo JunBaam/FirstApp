@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +57,9 @@ public class MemoActivity extends AppCompatActivity {
        fivemenu_btn();   //하단 5개 메뉴버튼
 
 
-        // Adapter 생성
-
 
         // 리스트뷰 참조 및 Adapter달기
-        listview = (ListView) findViewById(R.id.memo_listview);
+       listview=findViewById(R.id.memo_Lv);
         listview.setAdapter(memoAdapter);
 
         // 임시로 아이템추가

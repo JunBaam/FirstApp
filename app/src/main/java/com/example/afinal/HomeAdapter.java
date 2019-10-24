@@ -110,11 +110,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ItemViewHolder
         } //뷰홀더 생성자
 
 
-
-
     }//뷰홀더 클래스
-
-
 
 
 

@@ -9,6 +9,8 @@
     android:background="#FFFFFF">
 
 
+
+
     <Button
         android:id="@+id/nowreading_newbook"
         android:layout_width="91dp"
@@ -16,6 +18,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
         android:background="#A5C8F1"
+
         android:text="새로운책추가"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -91,7 +94,7 @@
             app:layout_constraintVertical_bias="0.554"
             android:src="@drawable/empty"
             />
-   
+
     <TextView
         android:id="@+id/nowreading_title"
         android:layout_width="128dp"
@@ -99,6 +102,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+
         android:text="책꽂이"
        android:gravity="center"
         android:textColor="#000000"
@@ -107,8 +111,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 
@@ -123,15 +125,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/nohouse" />
 
+
     <ImageView
         android:id="@+id/nowreading_nowreading"
         android:layout_width="62dp"
         android:layout_height="72dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nowreading_best"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/nowreading_home"
-        app:srcCompat="@drawable/book"
+          android:src="@drawable/book"
         android:layout_marginBottom="5dp"
         />
 

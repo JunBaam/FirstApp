@@ -7,13 +7,14 @@ public class HomeData {
     String bookcover;     //책커버 이미지
     String bookcategory;   //책분류
     String bookdate;        //책날짜
+    String bookend;        //책다읽은날짜
     String bookpage;      //책페이지
 
     int index;  //독서진행상황
     boolean complete;  //독서완료 유무
 
     public  HomeData(    String bookcover, String bookname, String bookauthor,
-                              String bookcategory ,String bookdate,String bookpage,
+                              String bookcategory ,String bookdate,String bookpage,String bookend,
                               int index ,boolean complete) {
         this.bookcover=bookcover;
         this.bookname=bookname;
@@ -21,11 +22,19 @@ public class HomeData {
         this.bookcategory =bookcategory;
         this.bookdate = bookdate;
         this.bookpage =bookpage;
+        this.bookend =bookend;
         this.index =index;
         this.complete=complete;
     }
 
 
+    public String getBookend() {
+        return bookend;
+    }
+
+    public void setBookend(String bookend) {
+        this.bookend = bookend;
+    }
 
     public int getIndex() {
         return index;

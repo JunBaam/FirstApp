@@ -46,6 +46,8 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
     ArrayList<NowreadingData> nowreadingDataArrayList =new ArrayList<NowreadingData>();
     //독서진행상황 리스트
     ArrayList<NowreadingDetailData> detailDataArrayList =new ArrayList<NowreadingDetailData>();
+
+
     //독서진행상황 어댑터
     NowreadingDetailAdapter detailAdapter;
     NowreadingAdapter nowreadingAdapter;
@@ -57,7 +59,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
 
     String position; //Arraylist(현재읽고있는에대한) position
     //기존책의 정보
-    String cover ,name ,author,page,date,category;
+    String cover ,name ,author,page,date,category,check;
     TextView bookName, bookAuthor ,bookPage ,bookCategory, bookDate ;
     Button bookModify_btn , bookFinsih_btn;  //책정보수정 ,독서완료 버튼
     ImageView detaiImage;  //이미지 상세보기
@@ -78,6 +80,8 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
 
        loadData();
 
+
+
         //책꽂이(NowreadingActivity)화면이 보낸 책정보를 받는다.
          Intent intent =getIntent();
         cover=intent.getStringExtra("bookcover");
@@ -86,6 +90,9 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
         page=intent.getStringExtra("bookpage");
         date=intent.getStringExtra("bookdate");
         category=intent.getStringExtra("bookcategory");
+
+
+
 
          //책꽂이(NowreadingActivity로부터 position값을받는다
         position=intent.getStringExtra("position");
@@ -128,7 +135,17 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
             }
         });
 
-        //독서완료버튼
+
+                    /* position으로 내가원하는 jsonObject값을 가져온다
+                       subObject(책정보가들어있는 객체)
+                       에서  bookindex를 1로 바꿔준다.
+                     */
+
+        /*
+        독서완료버튼
+        독서완료를 누르면 해당 position에 대한 쉐어드 정보를 삭제하고 "다읽은책" 쉐어드에 저장한다.
+        homeActivity를 띄운다.
+         */
         bookFinsih_btn=findViewById(R.id.detail_finish);
         bookFinsih_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,43 +156,27 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
                 SharedPreferences bookdata = getSharedPreferences("bookInfo", MODE_PRIVATE);
                 SharedPreferences.Editor bookeditor = bookdata.edit();
 
-            //    String json = bookdata.getString("BookData", null);
-                              String json = bookdata.getString("NowRead", null);
+                String json = bookdata.getString("BookData", null);
                 System.out.println(" 수정중:  " +  json);
                 try {
                     //책의 정보를 가지고있는 jsonObject
                     JSONObject jsonObject =new JSONObject(json);
+                    //BookData키를가진  JasonArray를불러옴
                     JSONArray jArray = jsonObject.getJSONArray("BookData");
-                    /* position으로 내가원하는 jsonObject값을 가져온다
-                       subObject(책정보가들어있는 객체)
-                       에서  bookindex를 1로 바꿔준다.
-                     */
                     //포지션에 맞는 jsonobject를 불러온다.
-                    JSONObject subObject = jArray.getJSONObject(Integer.parseInt(position));
+                    JSONObject choiceBook = jArray.getJSONObject(Integer.parseInt(position));
+                   send.putExtra("다읽은책", String.valueOf(choiceBook));
 
-
-                    System.out.println(" 수정중: 내가선택한책의정보 " +  subObject);
-                    //bookindex의 정보를 삭제하고 새로 값을 넣는다.
-                 //   jArray.put(Integer.parseInt(position),subObject);
-                //    System.out.println(" 수정중: jsonArray에담는다 " + jArray.put(Integer.parseInt(position),subObject));
-
-                //    jsonObject.put("BookData", jArray.put(Integer.parseInt(position),subObject));
-                 //   System.out.println(" 수정중: jsonobject에 담는다  " +   jsonObject.put("BookData", jArray.put(Integer.parseInt(position),subObject)));
-                    //  Integer.parseInt(position) 내가 가져온 포지션값
-                           jArray.remove(Integer.parseInt(position));
-
-                      JSONArray finishArray = new JSONArray();
-                         finishArray.put(Integer.parseInt(position),subObject);
-                    System.out.println(" 수정중: jsonArray에담는다 " +    finishArray.put(subObject));
-
-                    JSONObject finsihObject =new JSONObject();
-                        finsihObject.put("BookData", finishArray);
-                    System.out.println(" 수정중: jsonobject에 담는다  " +    finsihObject.put("BookData", finishArray));
-
-
-                    bookeditor.putString("FinishBook", String.valueOf(jsonObject));
-                    //해당 오브젝트삭제
+                    //내가 선택한 책정보를 삭제
+                    jArray.remove(Integer.parseInt(position));
+                    System.out.println(" 수정중: 내가선택한포지션  " +  position);
+                    System.out.println(" 수정중: 내가선택한책의정보 " +  choiceBook);
+                    jsonObject.put("BookData", jArray);
+                    //BookData에 저장한다.
+                    bookeditor.putString("BookData", String.valueOf(jsonObject));
                     bookeditor.apply();
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -235,9 +236,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
     @Override
     protected void onStop() {
         super.onStop();
-
-        saveData();
-
+        //saveData();
     }
 
     //    @Override
@@ -335,9 +334,10 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
         int progressKey =intent.getIntExtra("index",0);
        // String index = intent.getStringExtra("position");
         String to = Integer.toString(progressKey);
+        check =intent.getStringExtra("check");
 
 
-        String json =  sharedPreferences.getString(to, "");
+        String json =  sharedPreferences.getString( check, "");
 
         try {
 
@@ -368,6 +368,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
     }
 
 
+
     //독서진행상황을 저장한다.
     public void saveData(){
         //JasonArray   [ {},{} ] 형식으로 저장
@@ -376,9 +377,10 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
 
         Intent intent= getIntent();
         int progressKey =intent.getIntExtra("index",0);
-
         String to = Integer.toString(progressKey);
-        Log.w("저장할 키값  ",   to );
+        check =intent.getStringExtra("check");
+        Log.w("저장할 다른값  ",    to );
+        Log.w("저장할 랜덤키값  ",   check );
         try {
             JSONArray jArray = new JSONArray();//배열이 필요할때
             for (int i = 0; i < detailDataArrayList.size(); i++)//배열
@@ -390,7 +392,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
                 //position.subObject
             }
            //key arraylist.size
-            bookeditor.putString(to, jArray.toString());
+            bookeditor.putString(check, jArray.toString());
             bookeditor.apply();
         } catch (JSONException e) {
             e.printStackTrace();

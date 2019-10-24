@@ -3,7 +3,9 @@ package com.example.afinal;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -13,6 +15,13 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.afinal.crawling.BestActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -29,6 +38,8 @@ public class MypageActivity extends AppCompatActivity {
 
     private int i = 0;  //핸들러 변수
     ImageView image_Ad; //광고이미지
+    int bookCount=0;
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +50,24 @@ public class MypageActivity extends AppCompatActivity {
         fivemenu_btn();
 
 
+        SharedPreferences getSize =getSharedPreferences("다읽은책",MODE_PRIVATE);
+        String size =getSize.getString("BookFinish","");
+        try {
+            JSONObject jsonObject =new JSONObject(size);
+            JSONArray jsonArray=jsonObject.getJSONArray("BookFinish");
+            bookCount = jsonArray.length();
+
+            System.out.println( "@@Mypage"+bookCount);
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //다읽은책 갯수를 나타내는 책
+        TextView readCount_tv = findViewById(R.id.mypage_count);
+        readCount_tv.setText(""+ bookCount);  //setText로  int형을 넣을때는 앞에 ""를 넣어주자..
 
         //상담 통화버튼
         Button call_btn = findViewById(R.id.mypage_call);
@@ -49,8 +78,6 @@ public class MypageActivity extends AppCompatActivity {
                 startActivity(intent);  //액티비티 띄우기
             }
         });
-
-
 
 
 
@@ -74,10 +101,10 @@ public class MypageActivity extends AppCompatActivity {
 
     }//onCreate
 
-
-    /*3개의 이미지를 보여주는 함수 updatethread
-     이미지 클릭시 교보문고 인터넷연결
-     */
+    /*
+    3개의 이미지를 보여주는 함수 updatethread
+       이미지 클릭시 교보문고 인터넷연결
+       */
     private void updateThread() {
         int mod = i % 3;
 
@@ -148,7 +175,7 @@ break;
         Best.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BestSellerActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BestActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
@@ -156,8 +183,8 @@ break;
         Memo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MemoActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                Intent intent = new Intent(getApplicationContext(),ChartActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

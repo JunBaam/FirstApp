@@ -54,6 +54,19 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
+    <TextView
+        android:id="@+id/nowreading_nownowreading"
+        android:layout_width="165dp"
+        android:layout_height="41dp"
+        android:gravity="center"
+        android:text="다 읽은책"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
     <CheckBox
         android:id="@+id/home_change"
         android:layout_width="33dp"
@@ -74,6 +87,7 @@
         android:layout_marginTop="36dp"
         android:scrollbarFadeDuration="0"
         android:scrollbarSize="5dp"
+
         android:scrollbarThumbVertical="@android:color/darker_gray"
         android:scrollbars="vertical"
 
@@ -87,20 +101,25 @@
 
      />
 
+
+
     <ImageView
         android:id="@+id/home_home"
         android:layout_width="62dp"
         android:layout_height="72dp"
         android:layout_marginBottom="5dp"
+    android:src="@drawable/house"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/home_reading"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/house"
-        android:clickable="true"
-        android:background="?android:attr/selectableItemBackgroundBorderless"/>
 
         />
+
+
+
 
     <ImageView
         android:id="@+id/home_reading"

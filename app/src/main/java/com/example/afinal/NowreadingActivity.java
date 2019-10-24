@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.afinal.crawling.BestActivity;
 
 import org.json.JSONArray;
@@ -66,7 +67,9 @@ public class NowreadingActivity extends AppCompatActivity  {
     String Nname , Ccover,Aauthor ,Ppage, Ddate,Ccategory ,Pposition;
     SharedPreferences book_data;String sKey;
 
-    boolean check = true;
+
+
+
 
 
     private static final int REQUEST_CODE = 777;  //ReadingActivity requset code
@@ -85,6 +88,8 @@ public class NowreadingActivity extends AppCompatActivity  {
         initItemsData();   //데이터를 집어넣는다.
         MakeRecyclerview(); //리사이클러뷰생성
         loadData(); //책꽂이(NowreaindgActivity)에 저장된 데이터를 불러온다
+
+
 
         //  check = false;
         //현재읽고있는책 페이지를 열면 shared를 통해 저장된 값을 불러옴
@@ -112,6 +117,8 @@ public class NowreadingActivity extends AppCompatActivity  {
                 intent.putExtra("bookcategory",nowreadingDataArrayList.get(position).bookcategory);
                 intent.putExtra("bookcover",nowreadingDataArrayList.get(position).bookcover);
                 intent.putExtra("position",  String.valueOf(position));
+
+                intent.putExtra("check",nowreadingDataArrayList.get(position).check);
 
                 intent.putExtra("index" ,nowreadingDataArrayList.get(position).index);
 
@@ -245,6 +252,7 @@ public class NowreadingActivity extends AppCompatActivity  {
     @Override
     protected void onResume() {
         super.onResume();
+
         Log.w("@@NowreadingActivity" , "onResume!!");
     }
 
@@ -272,7 +280,7 @@ public class NowreadingActivity extends AppCompatActivity  {
     protected void onStop() {
         Log.i(TAG, "onStop!! ");
 
-
+        //saveData();
         super.onStop();
 
     }
@@ -302,15 +310,10 @@ public class NowreadingActivity extends AppCompatActivity  {
             //리사이클러뷰 데이터 객체
             //책커버 제목 저자 카테고리 날짜 페이지 index(독서완료여부 ,0은 안읽음 1 읽음)  순
             NowreadingData nowreadingData = new NowreadingData(cover,title,author,category
-                    ,date,page,index);
+                    ,date,page,index,randomkeygenerator());
             nowreadingDataArrayList.add(nowreadingData);            //리사이클러뷰 추가.
             nowreadingAdapter.notifyDataSetChanged();              //바뀐값을 Adapter에 알려준다.
             saveData();
-
-
-
-
-
 
         }
         //책정보수정
@@ -332,7 +335,7 @@ public class NowreadingActivity extends AppCompatActivity  {
             Log.w("최종수정값" , Ccover +Nname+Aauthor+Ppage+Ddate+Ccategory+Pposition);
 
             nowreadingData =new NowreadingData(Ccover ,
-                    Nname,Aauthor,Ccategory,Ddate,Ppage,0);
+                    Nname,Aauthor,Ccategory,Ddate,Ppage,0,randomkeygenerator());
 
             nowreadingDataArrayList.set(Integer.parseInt(Pposition),nowreadingData);
             nowreadingAdapter.notifyDataSetChanged();
@@ -375,7 +378,8 @@ public class NowreadingActivity extends AppCompatActivity  {
                 NowreadingData nowreadingData = new NowreadingData(subObject.getString("bookcover"),
                         subObject.getString("bookname") , subObject.getString("bookauthor")
                         ,subObject.getString("bookcategory"),subObject.getString("bookdate")
-                        ,subObject.getString("bookpage"),subObject.getInt("bookindex"));
+                        ,subObject.getString("bookpage"),subObject.getInt("bookindex")
+                     ,subObject.getString("check"));
 
                 /*
                 bookindex의 값이 0이면
@@ -389,15 +393,12 @@ public class NowreadingActivity extends AppCompatActivity  {
                     nowreadingDataArrayList.add(nowreadingData);
                     nowreadingAdapter.notifyDataSetChanged();
 
+
                     //1인 값들도 추가.
                 }else  if(subObject.getInt("bookindex")==1) {
                     finishReadingArrayList.add(nowreadingData);
 
                 }
-
-
-
-
 
             }
 
@@ -427,6 +428,7 @@ public class NowreadingActivity extends AppCompatActivity  {
                 subObject.put("bookdate", nowreadingDataArrayList.get(i).getBookdate());
                 subObject.put("bookpage", nowreadingDataArrayList.get(i).getBookpage());
                 subObject.put("bookindex", nowreadingDataArrayList.get(i).getIndex());
+                subObject.put("check",nowreadingDataArrayList.get(i).getCheck());
 
                 jArray.put(subObject);
 
@@ -528,6 +530,17 @@ public class NowreadingActivity extends AppCompatActivity  {
         }
     }
 
+    //랜덤키메서드
+    private static final String ALPHA_NUMERIC_STRING = "0123456789";
+    public static String randomkeygenerator() {
+        int count = 8;
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return builder.toString();
+    }
     //하단 5개메뉴 버튼
     private  void  fivemenu_btn(){
 
@@ -556,8 +569,8 @@ public class NowreadingActivity extends AppCompatActivity  {
         Memo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MemoActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                Intent intent = new Intent(getApplicationContext(),ChartActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

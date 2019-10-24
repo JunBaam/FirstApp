@@ -9,12 +9,12 @@ public class NowreadingData {
     String bookcategory;   //책분류
     String bookdate;        //책날짜
     String bookpage;      //책페이지
-   int index;  //독서진행상황 key값(arraylist.size)
-    boolean complete;  //독서완료 유무
+   int index;
+    String check;  //독서진행상황 key값
 
     public NowreadingData(    String bookcover, String bookname, String bookauthor,
                               String bookcategory ,String bookdate,String bookpage,
-                                int index ) {
+                                int index, String check ) {
         this.bookcover=bookcover;
         this.bookname=bookname;
         this.bookauthor=bookauthor;
@@ -22,10 +22,17 @@ public class NowreadingData {
         this.bookdate = bookdate;
         this.bookpage =bookpage;
         this.index =index;
+        this.check=check;
 
     }
 
+    public String getCheck() {
+        return check;
+    }
 
+    public void setCheck(String check) {
+        this.check = check;
+    }
 
     public int getIndex() {
        return index;

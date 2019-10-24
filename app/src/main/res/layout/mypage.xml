@@ -11,6 +11,10 @@
 
 
 
+
+
+
+
     <TextView
         android:id="@+id/mypage_title"
         android:layout_width="211dp"
@@ -29,20 +33,6 @@
 
 
     <Button
-        android:id="@+id/mypage_stop_btn"
-        android:layout_width="150dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="248dp"
-        android:text="타이머"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mypage_count"
-        app:layout_constraintVertical_bias="0.03" />
-
-
-    <Button
         android:id="@+id/mypage_call"
         android:layout_width="150dp"
         android:layout_height="48dp"
@@ -53,8 +43,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mypage_count"
-        app:layout_constraintVertical_bias="0.142" />
-
+        app:layout_constraintVertical_bias="0.034" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,7 +66,7 @@
         android:id="@+id/mypage_ad"
         android:layout_width="match_parent"
         android:layout_height="157dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="164dp"
         android:background="#424242"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,14 +76,26 @@
 
     <TextView
         android:id="@+id/mypage_count"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="후기작성한 책수:"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginTop="92dp"
+        android:text="0 "
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_title" />
+
+    <TextView
+
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="64dp"
+        android:text="권의책을 읽었습니다!"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mypage_count"
         app:layout_constraintTop_toBottomOf="@+id/mypage_title" />
 
     <Button

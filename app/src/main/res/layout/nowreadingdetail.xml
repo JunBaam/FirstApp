@@ -40,6 +40,7 @@
         android:id="@+id/detail_bookinformation"
         android:layout_width="188dp"
         android:layout_height="299dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:background="#CFCBCB"
@@ -48,11 +49,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/detailbookimage"
         app:layout_constraintTop_toBottomOf="@+id/detail_title">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
 
 
         <TextView
@@ -64,12 +60,13 @@
             android:textStyle="bold"
             android:textSize="15dp"
             android:textColor="#000" />
-</LinearLayout>
 
-    <LinearLayout
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -199,9 +196,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
 
-        android:text="독서진행상황 "
+        android:text="독서진행기록 "
         android:textColor="#000000"
-        android:textSize="20dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/detailbookimage"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
