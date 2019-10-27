@@ -57,15 +57,15 @@ public class NowreadingActivity extends AppCompatActivity  {
     Button NewBook;     //새로운 책추가 버튼
     Activity activity;
     //하단 5개 버튼
-    ImageView Home , Reading, Memo, MyPage;  Button Best;
+    ImageView Home , Reading, Memo, MyPage;
     private Context mContext;
     //새로운책에대한정보
     String cover,title,author ,page ,date ,category;
     int index;
     Uri modifyUri;
     //최종적으로 받는값
-    String Nname , Ccover,Aauthor ,Ppage, Ddate,Ccategory ,Pposition;
-    SharedPreferences book_data;String sKey;
+    String Nname , Ccover,Aauthor ,Ppage, Ddate,Ccategory ,Pposition ,random, Ccheck;
+
 
 
 
@@ -117,9 +117,7 @@ public class NowreadingActivity extends AppCompatActivity  {
                 intent.putExtra("bookcategory",nowreadingDataArrayList.get(position).bookcategory);
                 intent.putExtra("bookcover",nowreadingDataArrayList.get(position).bookcover);
                 intent.putExtra("position",  String.valueOf(position));
-
                 intent.putExtra("check",nowreadingDataArrayList.get(position).check);
-
                 intent.putExtra("index" ,nowreadingDataArrayList.get(position).index);
 
                 //               SharedPreferences bookdata = getSharedPreferences("bookInfo", MODE_PRIVATE);
@@ -193,10 +191,9 @@ public class NowreadingActivity extends AppCompatActivity  {
                         SharedPreferences.Editor progressRemove =bookProgress.edit();
 
                         System.out.println("독서진행상황삭제 포지션 " + position);
-                        progressRemove.remove(String.valueOf(position));
+
+                        progressRemove.remove(random);
                         progressRemove.apply();
-
-
 
                     }//onclick
                 });
@@ -301,16 +298,20 @@ public class NowreadingActivity extends AppCompatActivity  {
             page =data.getStringExtra("bookpage");
             date = data.getStringExtra("bookdate");
             category = data.getStringExtra("bookcategory");
+            random = data.getStringExtra("random");
             index =data.getIntExtra("index",0);
 
             System.out.println("인덱스값"+index);
+
+
 //          TextView textView =findViewById(R.id.hidden);
 //          textView.setText("book");
+
 
             //리사이클러뷰 데이터 객체
             //책커버 제목 저자 카테고리 날짜 페이지 index(독서완료여부 ,0은 안읽음 1 읽음)  순
             NowreadingData nowreadingData = new NowreadingData(cover,title,author,category
-                    ,date,page,index,randomkeygenerator());
+                    ,date,page,index, random);
             nowreadingDataArrayList.add(nowreadingData);            //리사이클러뷰 추가.
             nowreadingAdapter.notifyDataSetChanged();              //바뀐값을 Adapter에 알려준다.
             saveData();
@@ -319,7 +320,6 @@ public class NowreadingActivity extends AppCompatActivity  {
         //책정보수정
         if(requestCode ==MODIFY && resultCode ==RESULT_OK) {
 
-            System.out.println("@@백버튼이 눌리고 값이들어옴");
 
             modifyUri = data.getParcelableExtra("Ccover");
             Ccover = data.getStringExtra("Ccover");
@@ -328,15 +328,19 @@ public class NowreadingActivity extends AppCompatActivity  {
             Ppage=   data.getStringExtra("Ppage");
             Ddate= data.getStringExtra("Ddate");
             Ccategory= data.getStringExtra("Ccategory");
-
-
             Pposition=data.getStringExtra("Pposition");
+            Ccheck=data.getStringExtra("Ccheck");
 
-            Log.w("최종수정값" , Ccover +Nname+Aauthor+Ppage+Ddate+Ccategory+Pposition);
+
+
+            Log.w("최종수정값" , Ccover +Nname+Aauthor+Ppage+Ddate+Ccategory+Pposition
+            +Ccheck);
+
 
             nowreadingData =new NowreadingData(Ccover ,
-                    Nname,Aauthor,Ccategory,Ddate,Ppage,0,randomkeygenerator());
+                    Nname,Aauthor,Ccategory,Ddate,Ppage,0, Ccheck);
 
+            //내가선택한 리스트의 값을 수정한다.
             nowreadingDataArrayList.set(Integer.parseInt(Pposition),nowreadingData);
             nowreadingAdapter.notifyDataSetChanged();
             saveData();
@@ -541,12 +545,14 @@ public class NowreadingActivity extends AppCompatActivity  {
         }
         return builder.toString();
     }
+
+
     //하단 5개메뉴 버튼
     private  void  fivemenu_btn(){
 
         Home = findViewById(R.id.nowreading_home);
         Reading = findViewById(R.id.nowreading_nowreading);
-        Best = findViewById(R.id.nowreading_best);
+        ImageView Best = findViewById(R.id.nowreading_best);
         Memo =findViewById(R.id.nowreading_memo);
         MyPage = findViewById(R.id.nowreading_mypage);
 
@@ -554,7 +560,7 @@ public class NowreadingActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+               intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
         });
@@ -563,6 +569,7 @@ public class NowreadingActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BestActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+              //  intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

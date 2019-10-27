@@ -19,7 +19,6 @@ public class LodingActivity extends AppCompatActivity {
         startLoading();
 
 
-
     }
 
 

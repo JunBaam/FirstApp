@@ -64,9 +64,9 @@
         <!-- Constraint 에서 제약을 걸수있음
              motion을 틍해 위치를 설정-->
         <Constraint android:id="@+id/loding_logo"
-            android:layout_width="327dp"
-            android:layout_height="15dp"
-            motion:layout_constraintBottom_toTopOf="@+id/loding_main"
+            android:layout_width="20dp"
+            android:layout_height="100dp"
+
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintHorizontal_bias="0.607"
             motion:layout_constraintStart_toStartOf="parent"
@@ -85,11 +85,11 @@
     <ConstraintSet android:id="@+id/end"
         >
         <Constraint android:id="@+id/loding_logo"
-            android:layout_width="139dp"
-            android:layout_height="129dp"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            motion:layout_constraintBottom_toTopOf="@+id/loding_main"
+
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent"

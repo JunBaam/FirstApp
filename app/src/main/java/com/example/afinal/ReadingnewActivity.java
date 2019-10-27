@@ -124,9 +124,8 @@ mContext=this;
                 intent.putExtra("bookpage", page);
                 intent.putExtra("bookdate", day);
                 intent.putExtra("bookcategory", category);
-                //모든데이터.
-                intent.putExtra("bookdata", shared_bookdata);
                 intent.putExtra("index",0);
+                intent.putExtra("random",randomkeygenerator());
 
                 setResult(RESULT_OK, intent);
                 finish();
@@ -378,6 +377,18 @@ mContext=this;
                 .setDeniedMessage(getResources().getString(R.string.permission_1))
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
+    }
+
+    //랜덤키 생성메서드
+    private static final String ALPHA_NUMERIC_STRING = "0123456789";
+    public static String randomkeygenerator() {
+        int count = 8;
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return builder.toString();
     }
 
 

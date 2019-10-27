@@ -34,9 +34,7 @@ public class BestActivity extends AppCompatActivity {
     Button aladin_visible_btn, kyobo_visible_btn;
 
     BestAdapter bestAdapter;
-   KyoboAdapter   kyoboAdapter;
-  
-
+    KyoboAdapter   kyoboAdapter;
 
     ArrayList<ItemClass> list_book = new ArrayList<>();
     ArrayList<ItemClass> list_book_2 = new ArrayList<>();
@@ -50,7 +48,6 @@ public class BestActivity extends AppCompatActivity {
         ab.hide() ;
         mContext = this;
 
-        
         frame_aladin = (FrameLayout)findViewById(R.id.main_frame_aladin);
         frame_kyobo = (FrameLayout)findViewById(R.id.main_frame_kyobo);
 
@@ -200,6 +197,7 @@ public class BestActivity extends AppCompatActivity {
                     //  [지랄발랄 하은맘의 십팔년 책육아, , 혼자가 혼자에게, ,  ------ ]
                     //  빈 값이 하나씩 추가적으로 들어가서 나중에 빼고 다시 어레이 담아야 함.
 
+
                     Log.d(this.getClass().getName()+" title_value", list_booktitle.get(i).toString());
                 }
                 Log.d(this.getClass().getName()+"Array_contents_title", "toString_value :"+list_booktitle.toString());
@@ -300,7 +298,7 @@ public class BestActivity extends AppCompatActivity {
                kyoboAdapter = new KyoboAdapter(list_book_2);
 
             recyclerView.setAdapter(bestAdapter);
-            kyoboRecyclerView.setAdapter(   kyoboAdapter);
+            kyoboRecyclerView.setAdapter(kyoboAdapter);
 
             gress_book.dismiss();
 

@@ -9,13 +9,14 @@ public class HomeData {
     String bookdate;        //책날짜
     String bookend;        //책다읽은날짜
     String bookpage;      //책페이지
+    String review;      //리뷰
 
     int index;  //독서진행상황
     boolean complete;  //독서완료 유무
 
     public  HomeData(    String bookcover, String bookname, String bookauthor,
-                              String bookcategory ,String bookdate,String bookpage,String bookend,
-                              int index ,boolean complete) {
+                              String bookcategory ,String bookdate,String bookpage,String bookend,String review
+                             , int index ,boolean complete) {
         this.bookcover=bookcover;
         this.bookname=bookname;
         this.bookauthor=bookauthor;
@@ -23,10 +24,18 @@ public class HomeData {
         this.bookdate = bookdate;
         this.bookpage =bookpage;
         this.bookend =bookend;
+        this.review=review;
         this.index =index;
         this.complete=complete;
     }
 
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
 
     public String getBookend() {
         return bookend;

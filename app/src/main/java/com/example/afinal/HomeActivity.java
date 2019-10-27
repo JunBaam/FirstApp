@@ -22,6 +22,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.afinal.crawling.BestActivity;
 
 import org.json.JSONArray;
@@ -46,14 +47,14 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
     GridLayoutManager gridLayoutManager;
     ArrayList<HomeData> homeDataArrayList;
     HomeData homeData;
-
     NowreadingData nowreadingData;                  //책에대한 정보
 
     Activity activity;
     Context mContext;
     String TAG ="llllHome";
-    String fin;
+    String fin,review;
     JSONObject json ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +66,14 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
-        loadData();  //다읽은책 정보를 불러온다
+       loadData();  //다읽은책 정보를 불러온다
+
         fivemenu_btn(); //하단 5개 메뉴버튼
         MakeRecyclerview(); //리사이클러뷰생성
 
-
-
     /*
-    intent로 받은 JsonObject(책의정보) 가  true일때, 리사이클러뷰를 추가하고  쉐어드에 저장한다.
+    intent로 받은 JsonObject(책의정보) 가  true일때, 리사이클러뷰를 추가하고
+     다읽은책 shared에 저장한다.
     */
 
         //현재시간을 가져오는 메서드  년,월 일
@@ -81,10 +82,11 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
         String endTime = dateFormat.format(date);
 
 
-
         Intent intent = getIntent();
         fin = intent.getStringExtra("다읽은책");
-        System.out.println("@@@@" + fin);
+       review =intent.getStringExtra("random");
+
+        System.out.println("랜덤값 "  + review);
 
         if(intent.hasExtra("다읽은책") == true) {
                 try {
@@ -99,7 +101,7 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
 
 
                     HomeData homeData = new HomeData(bookcover, bookname,
-                            bookauthor, bookcategory, bookdate, bookpage, endTime, 0, true);
+                            bookauthor, bookcategory, bookdate, bookpage, endTime, review,0, true);
 
                     System.out.println("@@@@현재시간" + endTime );
                     System.out.println("@@@@현재시간" + homeData );
@@ -109,7 +111,6 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
                     }
                     homeDataArrayList.add(homeData);
                     homeAdapter.notifyDataSetChanged();
-
                     saveData();
 
                 } catch (JSONException e) {
@@ -135,16 +136,38 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
         });
 
 
-
+        Log.d(TAG, "onCreate ");
     } //onCreate
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d(TAG, "onStart ");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart: ");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
+        //loadData();
+    }
 
     @Override
     public void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop: ");
         saveData();
     }
 
-   //다읽은책 쉐어드저장
+   //다읽은책 정보를 저장한다.
     public void saveData(){
 
         if (homeDataArrayList == null) {
@@ -168,6 +191,7 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
                 subObject.put("bookpage", homeDataArrayList.get(i).getBookpage());
                 subObject.put("bookend", homeDataArrayList.get(i).getBookend());
                 subObject.put("bookindex",homeDataArrayList.get(i).getIndex());
+                subObject.put("review",homeDataArrayList.get(i).getReview());
 
                 jArray.put(subObject);
 
@@ -176,7 +200,6 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
                 Log.i("데이터책이미지",  homeDataArrayList.get(i).getBookcover());
                 System.out.println( "데이터리스트 " +homeDataArrayList.size());
             }
-
 
             mainObject.put("BookFinish", jArray);  //배열을 넣음
         } catch (JSONException e) {
@@ -190,11 +213,9 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
 
 
     private  void  loadData() {
-
         if ( homeDataArrayList == null) {
             homeDataArrayList= new ArrayList<>();
         }
-
 
         SharedPreferences bookdata = getSharedPreferences("다읽은책", MODE_PRIVATE);
         String json = bookdata.getString("BookFinish", null); //저장된 값을 꺼내온다.
@@ -211,17 +232,14 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
                 System.out.println("@@@@제이슨오브젝트" +  subObject);
                 //책커버 ,책이름 ,저자 ,카테고리,날짜 ,페이지,다읽은 날짜 순
 
-
                 HomeData homeData =new HomeData(subObject.getString("bookcover"),
                         subObject.getString("bookname") , subObject.getString("bookauthor")
                         ,subObject.getString("bookcategory"),subObject.getString("bookdate")
                         ,subObject.getString("bookpage"),subObject.getString("bookend"),
-                        subObject.getInt("bookindex"),false);
+                        subObject.getString("review"),subObject.getInt("bookindex"),false);
 
                     homeDataArrayList.add(homeData);
-
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -236,27 +254,29 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
         Intent intent =new Intent(getApplicationContext() ,CompleteActivity.class);
 
          //책이름 ,책저자 , 페이지 ,날짜 ,카테고리 ,커버이미지 ,position
-
         intent.putExtra("bookname",homeDataArrayList.get(position).bookname);
         intent.putExtra("bookauthor",homeDataArrayList.get(position).bookauthor);
         intent.putExtra("bookpage",homeDataArrayList.get(position).bookpage);
         intent.putExtra("bookdate",homeDataArrayList.get(position).bookdate);
         intent.putExtra("bookcategory",homeDataArrayList.get(position).bookcategory);
         intent.putExtra("bookcover",homeDataArrayList.get(position).bookcover);
+        intent.putExtra("bookend",homeDataArrayList.get(position).bookend);
         intent.putExtra("position",  String.valueOf(position));
+
+        intent.putExtra("review",homeDataArrayList.get(position).review);
 
         startActivity(intent);
 
     }
 
+
     @Override
     public void onModifyClicked(int position) {
-
     }
 
+     //어댑터에서 해당 리스트를 삭제한다.
     @Override
     public void onRemoveClicked(int position) {
-
         Log.d("삭제버튼", position+"번째 삭제");
         homeAdapter.removeItem(position);
         homeAdapter.notifyDataSetChanged();
@@ -265,7 +285,7 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
 
 
 
-    //리사이클러뷰 정보 메서드
+    //리사이클러뷰 정보
     private  void  MakeRecyclerview(){
         gridLayoutManager = new GridLayoutManager(this, SPAN_COUNT_THREE);  //SPAN_COUNT에 따라 뷰를 몇개씩 보여줄건지 결정한다.
         homeAdapter = new HomeAdapter(homeDataArrayList, gridLayoutManager,this);
@@ -278,21 +298,20 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
 
     }
 
+    //임시데이터를 넣는 메서드
     private void initItemsData() {
        homeDataArrayList = new ArrayList<>();
         // nowreadingDataArrayList.add(new NowreadingData("" ,"파란색","안준범","book"));
-
-
     }
 
 
 
 
-    //    //하단 다섯개 버튼
+    //하단 다섯개 버튼
     private  void  fivemenu_btn(){
         ImageView Home = findViewById(R.id.home_home);
         ImageView Reading = findViewById(R.id.home_reading);
-        Button Best = findViewById(R.id.home_best);
+        ImageView Best = findViewById(R.id.home_best);
         ImageView Memo =findViewById(R.id.home_memo);
         ImageView MyPage = findViewById(R.id.home_mypage);
 
@@ -327,6 +346,7 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),NowreadingActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                 startActivity(intent);
             }
         });

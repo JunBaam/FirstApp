@@ -29,7 +29,7 @@ public class ReadingnewModifyActivity extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     int year ,month, dayOfMonth;
 
-    String name ,cover ,page, category,date,author;
+    String name ,cover ,page, category,date,author,check;
     Button modifyDate;
     ImageView modifyImage;
     EditText modifyName ,modifyPage ,modifyAuthor;

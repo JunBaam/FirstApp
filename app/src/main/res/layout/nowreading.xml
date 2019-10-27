@@ -139,19 +139,39 @@
         android:layout_marginBottom="5dp"
         />
 
-    <Button
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/nowreading_best"
-        android:layout_width="62dp"
-        android:layout_height="72dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="16dp"
         android:background="#ffffff"
-        android:text="BEST Seller"
         android:textColor="#B7C1D1"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nowreading_memo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/nowreading_nowreading"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="1.0" />
+
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/t" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="BestSeller!"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/nowreading_best" />
+
+
+
 
     <ImageView
         android:id="@+id/nowreading_memo"
@@ -162,7 +182,10 @@
         app:layout_constraintEnd_toStartOf="@+id/nowreading_mypage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/nowreading_best"
-        app:srcCompat="@drawable/nomemo" />
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/gg"
+
+        />
 
 
     <ImageView

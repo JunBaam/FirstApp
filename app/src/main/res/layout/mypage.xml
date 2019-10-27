@@ -45,6 +45,17 @@
         app:layout_constraintTop_toBottomOf="@+id/mypage_count"
         app:layout_constraintVertical_bias="0.034" />
 
+
+    <Button
+        android:id="@+id/mypage_alarm_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람 "
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mypage_call"
+        tools:layout_editor_absoluteY="205dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,10 +109,11 @@
         app:layout_constraintStart_toEndOf="@+id/mypage_count"
         app:layout_constraintTop_toBottomOf="@+id/mypage_title" />
 
-    <Button
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/mypage_best"
-        android:layout_width="62dp"
-        android:layout_height="72dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="16dp"
         android:background="#ffffff"
         android:text="BEST Seller"
         android:textColor="#B7C1D1"
@@ -109,8 +121,23 @@
         app:layout_constraintEnd_toStartOf="@+id/mypage_memo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/mypage_reading"
-        app:layout_constraintTop_toBottomOf="@+id/mypage_ad"
-        app:layout_constraintVertical_bias="1.0" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/t" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BestSeller!"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_best"/>
+
 
     <ImageView
         android:id="@+id/mypage_home"
@@ -140,7 +167,8 @@
         app:layout_constraintEnd_toStartOf="@+id/mypage_mypage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/mypage_best"
-        app:srcCompat="@drawable/nomemo" />
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/gg" />
 
     <ImageView
         android:id="@+id/mypage_mypage"
@@ -155,5 +183,17 @@
         />
 
 
+    <CheckBox
+        android:id="@+id/mypage_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+
+        android:layout_marginTop="72dp"
+        android:button="@drawable/music"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

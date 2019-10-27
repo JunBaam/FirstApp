@@ -131,30 +131,49 @@
         app:layout_constraintStart_toEndOf="@+id/home_home"
         app:srcCompat="@drawable/nobook" />
 
-    <Button
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/home_best"
-        android:layout_width="62dp"
-        android:layout_height="72dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="16dp"
         android:background="#ffffff"
-        android:text="BEST Seller"
         android:textColor="#B7C1D1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/home_memo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/home_reading"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
-        app:layout_constraintVertical_bias="1.0" />
+
+
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/t" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BestSeller!"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_best">
+
+    </TextView>
 
     <ImageView
         android:id="@+id/home_memo"
         android:layout_width="62dp"
         android:layout_height="72dp"
-
+         android:layout_marginBottom="5dp"
+        android:src="@drawable/gg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/home_mypage"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/home_best"
-        app:srcCompat="@drawable/nomemo" />
+        app:layout_constraintStart_toEndOf="@+id/home_best" />
 
     <ImageView
         android:id="@+id/home_mypage"

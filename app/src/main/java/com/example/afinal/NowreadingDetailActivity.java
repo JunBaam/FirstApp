@@ -59,7 +59,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
 
     String position; //Arraylist(현재읽고있는에대한) position
     //기존책의 정보
-    String cover ,name ,author,page,date,category,check;
+    String cover ,name ,author,page,date,category,check ;
     TextView bookName, bookAuthor ,bookPage ,bookCategory, bookDate ;
     Button bookModify_btn , bookFinsih_btn;  //책정보수정 ,독서완료 버튼
     ImageView detaiImage;  //이미지 상세보기
@@ -90,9 +90,9 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
         page=intent.getStringExtra("bookpage");
         date=intent.getStringExtra("bookdate");
         category=intent.getStringExtra("bookcategory");
+      check = intent.getStringExtra("check");
 
-
-
+        Log.w("상세보기에서받은 랜덤값",  check);
 
          //책꽂이(NowreadingActivity로부터 position값을받는다
         position=intent.getStringExtra("position");
@@ -117,7 +117,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
         bookCategory.setText(category);
         bookDate.setText(date);
 
-        //책정보수정버튼
+        //책내용 수정하기! btn
         //클릭시 책정보수정화면(ReadingnewModifyActivity)로 값을 보낸다.
         bookModify_btn = findViewById(R.id.detail_modify_information);
         bookModify_btn.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +131,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
                 modifyIntent.putExtra("modifyCategory",category);
                 modifyIntent.putExtra("modifyDate",date);
                 modifyIntent.putExtra("modifyAuthor",author);
+
                 startActivityForResult(modifyIntent , MODIFY);
             }
         });
@@ -151,39 +152,14 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
             @Override
             public void onClick(View view) {
 
-                Intent send = new Intent(getApplicationContext(),HomeActivity.class);
+                Intent goReviewIntent = new Intent(getApplicationContext(),BookReviewActivity.class);
 
-                SharedPreferences bookdata = getSharedPreferences("bookInfo", MODE_PRIVATE);
-                SharedPreferences.Editor bookeditor = bookdata.edit();
+                goReviewIntent.putExtra("position",position);
+                goReviewIntent.putExtra("name",name);
+                goReviewIntent.putExtra("cover",cover);
 
-                String json = bookdata.getString("BookData", null);
-                System.out.println(" 수정중:  " +  json);
-                try {
-                    //책의 정보를 가지고있는 jsonObject
-                    JSONObject jsonObject =new JSONObject(json);
-                    //BookData키를가진  JasonArray를불러옴
-                    JSONArray jArray = jsonObject.getJSONArray("BookData");
-                    //포지션에 맞는 jsonobject를 불러온다.
-                    JSONObject choiceBook = jArray.getJSONObject(Integer.parseInt(position));
-                   send.putExtra("다읽은책", String.valueOf(choiceBook));
+                startActivity(goReviewIntent);
 
-                    //내가 선택한 책정보를 삭제
-                    jArray.remove(Integer.parseInt(position));
-                    System.out.println(" 수정중: 내가선택한포지션  " +  position);
-                    System.out.println(" 수정중: 내가선택한책의정보 " +  choiceBook);
-                    jsonObject.put("BookData", jArray);
-                    //BookData에 저장한다.
-                    bookeditor.putString("BookData", String.valueOf(jsonObject));
-                    bookeditor.apply();
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                send.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
-                startActivity(send);
-                finish();
             }
         });
 
@@ -216,7 +192,6 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
             @Override
             public void onClick(View view) {
                 Intent intent  = new Intent(getApplicationContext() , NowreadingActivity.class);
-
                 intent.putExtra("Nname",getTitle);
                 intent.putExtra("Ccover",getCover);
                 intent.putExtra("Aauthor",getAuthor);
@@ -224,8 +199,9 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
                 intent.putExtra("Ddate",getDate);
                 intent.putExtra("Ccategory",getCategory);
                 intent.putExtra("Pposition",position);
-
+                intent.putExtra("Ccheck",check);
                 setResult(Activity.RESULT_OK, intent);
+
                 finish();
             }
         });
@@ -236,16 +212,33 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
     @Override
     protected void onStop() {
         super.onStop();
-        //saveData();
+        saveData();
     }
 
-    //    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        System.out.println("@@백버튼이 눌립니다");
-//        //Intent intent = new Intent(NowreadingDetailActivity.this, LodingActivity.class);
-//
-//    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(NowreadingDetailActivity.this, NowreadingActivity.class);
+
+            //getCover(수정된이미지) 값이 있다면 데이터를 넘긴다.
+        if(getCover != null){
+            intent.putExtra("Nname",getTitle);
+            intent.putExtra("Ccover",getCover);
+            intent.putExtra("Aauthor",getAuthor);
+            intent.putExtra("Ppage",getPage);
+            intent.putExtra("Ddate",getDate);
+            intent.putExtra("Ccategory",getCategory);
+            intent.putExtra("Pposition",position);
+            intent.putExtra("Ccheck",check);
+            setResult(Activity.RESULT_OK, intent);
+            //백버튼 오버라이딩 할시에 setResult를 먼저써주자
+            //설정을 먼저하고 적용해야되는 구조
+            super.onBackPressed();
+        }
+
+        finish();
+
+    }
 
     //수정된 책의 정보를 받아옴
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -278,7 +271,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
 
             //   Log.d("@@DetailAcitivity" , String.valueOf(nowreadingData));
             //  nowreadingDataArrayList.set(Integer.parseInt(position),nowreadingData);
-            //   saveData();
+             //  saveData();
         }
 
     } //ActivityResult
@@ -334,8 +327,8 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
         int progressKey =intent.getIntExtra("index",0);
        // String index = intent.getStringExtra("position");
         String to = Integer.toString(progressKey);
-        check =intent.getStringExtra("check");
 
+        check =intent.getStringExtra("check");
 
         String json =  sharedPreferences.getString( check, "");
 
@@ -376,10 +369,8 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
         SharedPreferences.Editor bookeditor =bookdata.edit();
 
         Intent intent= getIntent();
-        int progressKey =intent.getIntExtra("index",0);
-        String to = Integer.toString(progressKey);
         check =intent.getStringExtra("check");
-        Log.w("저장할 다른값  ",    to );
+
         Log.w("저장할 랜덤키값  ",   check );
         try {
             JSONArray jArray = new JSONArray();//배열이 필요할때
@@ -438,7 +429,7 @@ public class NowreadingDetailActivity extends AppCompatActivity implements Nowre
                 detailDataArrayList.add(detailData);
                 detailAdapter.notifyDataSetChanged();
                 //추가한 데이터를 저장
-                saveData();
+              //  saveData();
 
                 Toast.makeText(NowreadingDetailActivity.this,"독서진행상황 추가했습니다.", Toast.LENGTH_SHORT).show();
                 mydialog.cancel();

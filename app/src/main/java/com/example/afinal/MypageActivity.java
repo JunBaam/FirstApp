@@ -6,24 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.afinal.alarm.NotiftyActivity;
 import com.example.afinal.crawling.BestActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 public class MypageActivity extends AppCompatActivity {
 
@@ -45,27 +43,54 @@ public class MypageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage);
 
-        ActionBar ab = getSupportActionBar() ;
-        ab.hide() ;
+        ActionBar actionBar = getSupportActionBar() ;
+        actionBar.hide() ;
         fivemenu_btn();
 
 
+        /*  뮤직체크박스가 true면 서비스시작 , 한번더 눌러서 false될시 서비스종료 */
+        final CheckBox musicCheck =findViewById(R.id.mypage_music);
+        musicCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               if(musicCheck.isChecked()){
+                   startService(new Intent(getApplicationContext(), MusicService.class));
+               }else if(!musicCheck.isChecked()){
+                     stopService(new Intent(getApplicationContext(), MusicService.class));
+               }
+            }
+        });
+
+        Button alarm= findViewById(R.id.mypage_alarm_btn);
+        alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent= new Intent(getApplicationContext(), NotiftyActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
+
+
+        /*     BookFinsh jsonArray의 length() 값으로 다읽은책의 권수를 설정한다.  */
         SharedPreferences getSize =getSharedPreferences("다읽은책",MODE_PRIVATE);
         String size =getSize.getString("BookFinish","");
         try {
             JSONObject jsonObject =new JSONObject(size);
             JSONArray jsonArray=jsonObject.getJSONArray("BookFinish");
             bookCount = jsonArray.length();
-
             System.out.println( "@@Mypage"+bookCount);
-
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        //다읽은책 갯수를 나타내는 책
+        //다읽은책 갯수를 나타내는 textview
         TextView readCount_tv = findViewById(R.id.mypage_count);
         readCount_tv.setText(""+ bookCount);  //setText로  int형을 넣을때는 앞에 ""를 넣어주자..
 
@@ -158,7 +183,7 @@ break;
         //하단 버튼 5개
         ImageView Home = findViewById(R.id.mypage_home);
         ImageView Reading = findViewById(R.id.mypage_reading);
-        Button Best = findViewById(R.id.mypage_best);
+        ImageView  Best = findViewById(R.id.mypage_best);
         ImageView Memo =findViewById(R.id.mypage_memo);
         ImageView MyPage = findViewById(R.id.mypage_mypage);
 
