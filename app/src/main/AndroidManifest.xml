@@ -4,7 +4,9 @@
     package="com.example.afinal">
 
     <application
-        android:allowBackup="true"
+
+       tools:replace="android:label"
+        android:allowBackup="false"
         android:icon="@mipmap/main_logo"
         android:label="MyLibrary"
         android:roundIcon="@mipmap/main_logo"
@@ -12,7 +14,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BookReviewActivity"></activity>
+        <activity android:name=".MapActivity">
+
+        </activity>
+
+        <activity android:name=".BookReviewActivity" />
         <activity android:name=".alarm.NotiftyActivity" />
         <activity android:name=".ChartActivity" />
         <activity android:name=".crawling.BestActivity" />
@@ -29,12 +35,37 @@
         <activity android:name=".CompleteActivity" />
         <activity android:name=".BestSellerActivity" />
         <activity android:name=".HomeActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 사진 촬영을 위한 provide -->
+
+
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="@string/kakao_scheme"
+                    android:host="@string/kakaolink_host" />
+            </intent-filter>
+
+        </activity>
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCXsz2O7yH5cEM61OkKfI1vlebqryBwLsg" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+
+
+     <!-- 갤러리에서 사진을 가져오기위한  provide-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.afinal.provider"
@@ -43,7 +74,24 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider> <!-- 음악재생을위한 serivce -->
+        </provider>
+
+
+
+        <receiver android:name=".MyLocationProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/location_widget_info" />
+        </receiver>
+
+        <service android:name=".MyLocationProvider$GPSLocationService"></service>
+
+
+
         <receiver
             android:name=".alarm.DeviceBootReceiver"
             android:enabled="false">
@@ -53,16 +101,27 @@
         </receiver>
 
         <receiver android:name=".alarm.AlarmReceiver" />
+        <!-- 음악재생을위한 serivce -->
         <service android:name=".MusicService" />
+
     </application>
+
+
+
+
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <!--저장경로 읽고 쓰기  허가-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+     <!--위치정보접근 허가-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
 </manifest>

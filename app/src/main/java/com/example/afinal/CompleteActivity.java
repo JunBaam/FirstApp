@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kakao.kakaolink.v2.KakaoLinkCallback;
+import com.kakao.kakaolink.v2.KakaoLinkService;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,6 +31,7 @@ public class CompleteActivity extends AppCompatActivity {
         setContentView(R.layout.complete);
         ActionBar ab = getSupportActionBar() ;
         ab.hide();
+
 
         /*    HomeActivity로부터 받은 책정보를 이미지뷰,텍스트뷰에 뿌려준다  */
         Intent intent =getIntent();
@@ -66,6 +70,7 @@ public class CompleteActivity extends AppCompatActivity {
         bookEnd.setText(dateEnd);
 
 
+          //독서후기를 저장하는 Shared
         SharedPreferences reviewShared = getSharedPreferences("책리뷰", MODE_PRIVATE);
         String getReview =reviewShared.getString(review,"");
 
@@ -75,9 +80,17 @@ public class CompleteActivity extends AppCompatActivity {
         reviewContext.setText(getReview);
 
 
-
-
-
     }
+
+
+
+
+
+
+
+
+
+
+
 
 }

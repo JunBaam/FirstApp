@@ -20,10 +20,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.afinal.crawling.BestActivity;
+import com.kakao.kakaolink.v2.KakaoLinkService;
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +41,8 @@ import java.util.Date;
 import static com.airbnb.lottie.network.FileExtension.JSON;
 
 
-public class HomeActivity extends AppCompatActivity implements HomeAdapter.RecyclerViewClickListener {
+public class HomeActivity extends AppCompatActivity implements HomeAdapter.RecyclerViewClickListener , AutoPermissionsListener
+          {
 
     //Recyclerview
     public static final int SPAN_COUNT_ONE = 1;
@@ -57,7 +62,7 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
@@ -68,23 +73,29 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
         actionbar.hide();
        loadData();  //다읽은책 정보를 불러온다
 
-        fivemenu_btn(); //하단 5개 메뉴버튼
-        MakeRecyclerview(); //리사이클러뷰생성
+
+
+        // findview (하단 메뉴바 )
+        fivemenu_btn();
+        //다읽은책 리사이클러뷰생성
+        MakeRecyclerview();
+
+        AutoPermissions.Companion.loadAllPermissions(this, 101);
 
     /*
     intent로 받은 JsonObject(책의정보) 가  true일때, 리사이클러뷰를 추가하고
      다읽은책 shared에 저장한다.
     */
-
         //현재시간을 가져오는 메서드  년,월 일
         SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy년MM월dd일 ", java.util.Locale.getDefault());
         Date date = new Date();
         String endTime = dateFormat.format(date);
 
-
+        //어떤액티비이에서 보내온 값인지?
+        //Todo 어떤액티비에서
         Intent intent = getIntent();
         fin = intent.getStringExtra("다읽은책");
-       review =intent.getStringExtra("random");
+        review =intent.getStringExtra("random");
 
         System.out.println("랜덤값 "  + review);
 
@@ -93,13 +104,13 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
                     json = new JSONObject(fin);
                     //  System.out.println("@@@@home" + json);
                     String bookname = json.getString("bookname");   //책이름
-                    String bookauthor = json.getString("bookauthor");   //책이름    //책저자
-                    String bookcover = json.getString("bookcover");   //책이름    //책커버 이미지
-                    String bookcategory = json.getString("bookcategory");   //책이름 //책분류
-                    String bookdate = json.getString("bookdate");   //책이름    //책날짜
-                    String bookpage = json.getString("bookpage");   //책이름     //책페이지
+                    String bookauthor = json.getString("bookauthor");      //책저자
+                    String bookcover = json.getString("bookcover");      //책커버 이미지
+                    String bookcategory = json.getString("bookcategory");  //책분류
+                    String bookdate = json.getString("bookdate");       //책날짜
+                    String bookpage = json.getString("bookpage");       //책페이지
 
-
+                    // HomaActivity에서 보여주는 책정보.
                     HomeData homeData = new HomeData(bookcover, bookname,
                             bookauthor, bookcategory, bookdate, bookpage, endTime, review,0, true);
 
@@ -168,6 +179,7 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
     }
 
    //다읽은책 정보를 저장한다.
+              //Todo 구조 확인
     public void saveData(){
 
         if (homeDataArrayList == null) {
@@ -177,12 +189,11 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
         SharedPreferences.Editor bookeditor =bookdata.edit();
         JSONObject mainObject =new JSONObject();
 
-
         try {
-            JSONArray jArray = new JSONArray();//배열이 필요할때
-            for (int i = 0; i < homeDataArrayList.size(); i++)//배열
+            JSONArray jArray = new JSONArray();
+            for (int i = 0; i < homeDataArrayList.size(); i++)
             {
-                JSONObject  subObject = new JSONObject();  //배열 내에 들어갈 json
+                JSONObject  subObject = new JSONObject();
                 subObject.put("bookname", homeDataArrayList.get(i).getBookname());
                 subObject.put("bookcover", homeDataArrayList.get(i).getBookcover());
                 subObject.put("bookauthor", homeDataArrayList.get(i).getBookauthor());
@@ -201,7 +212,7 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
                 System.out.println( "데이터리스트 " +homeDataArrayList.size());
             }
 
-            mainObject.put("BookFinish", jArray);  //배열을 넣음
+            mainObject.put("BookFinish", jArray);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -218,20 +229,20 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
         }
 
         SharedPreferences bookdata = getSharedPreferences("다읽은책", MODE_PRIVATE);
-        String json = bookdata.getString("BookFinish", null); //저장된 값을 꺼내온다.
+        String json = bookdata.getString("BookFinish", null);
         try {
-            //제이슨 객체를 가져옴.
+
             JSONObject jsonObject = new JSONObject(json);
-            //jsonobject로부터 key값으로 arraylist를 가져옴.
+
             JSONArray jArray = jsonObject.getJSONArray("BookFinish");
             System.out.println("@@@@제이슨Array "+ jArray) ;
 
             for(int i =0; i<jArray.length(); i++) {
-                //jsonlist에서 오브젝트를 가져옴
+
                 JSONObject subObject = jArray.getJSONObject(i);
                 System.out.println("@@@@제이슨오브젝트" +  subObject);
-                //책커버 ,책이름 ,저자 ,카테고리,날짜 ,페이지,다읽은 날짜 순
 
+                //책커버 ,책이름 ,저자 ,카테고리,날짜 ,페이지,다읽은 날짜 순
                 HomeData homeData =new HomeData(subObject.getString("bookcover"),
                         subObject.getString("bookname") , subObject.getString("bookauthor")
                         ,subObject.getString("bookcategory"),subObject.getString("bookdate")
@@ -361,4 +372,23 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.Recyc
         });
 
     }
-}//NowreadingActivity
+
+              @Override
+              public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+                  super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+                  AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
+              }
+
+              @Override
+              public void onDenied(int i, String[] permissions) {
+                  Toast.makeText(this, "permissions denied : " + permissions.length, Toast.LENGTH_LONG).show();
+              }
+
+              @Override
+              public void onGranted(int i, String[] permissions) {
+                  Toast.makeText(this, "permissions granted : " + permissions.length, Toast.LENGTH_LONG).show();
+
+              }
+
+          }//NowreadingActivity

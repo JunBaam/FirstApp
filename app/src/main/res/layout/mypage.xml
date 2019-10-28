@@ -53,8 +53,9 @@
         android:text="알람 "
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/mypage_call"
-        tools:layout_editor_absoluteY="205dp" />
+        tools:layout_editor_absoluteY="91dp" />
 
     <TextView
         android:layout_width="wrap_content"
